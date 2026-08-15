@@ -1,4 +1,4 @@
-package com.example.goai
+package com.gostudios.goai
 
 import android.os.Bundle
 import android.webkit.WebSettings

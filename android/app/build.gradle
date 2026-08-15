@@ -4,15 +4,15 @@ plugins {
 }
 
 android {
-    namespace 'com.example.goai'
+    namespace 'com.gostudios.goai'
     compileSdk 36
 
     defaultConfig {
-        applicationId "com.example.goai"
+        applicationId "com.gostudios.goai"
         minSdk 33
         targetSdk 36
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.1"
     }
 
     buildTypes {
