@@ -1,0 +1,24 @@
+# Node
+node_modules/
+npm-debug.log
+yarn-error.log
+.env
+
+# Build outputs
+dist/
+
+# Android
+**/android/.gradle/
+**/android/app/build/
+**/android/build/
+**/android/.cxx/
+/local.properties
+
+# IDEs
+.vscode/
+.idea/
+*.iml
+
+# Misc
+.DS_Store
+Thumbs.db

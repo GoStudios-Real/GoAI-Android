@@ -1,0 +1,43 @@
+{
+  "name": "goconsole",
+  "productName": "GoConsole",
+  "version": "1.0.0",
+  "description": "Gaming GoAI - the AI for GoConsoleOS, made by GoStudios",
+  "main": "main.js",
+  "author": "GoStudios",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win portable",
+    "dist:dir": "electron-builder --win dir"
+  },
+  "build": {
+    "appId": "com.gostudios.goconsole",
+    "productName": "GoConsole",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "index.html",
+      "assets/**/*",
+      "main.js",
+      "preload.js",
+      "package.json"
+    ],
+    "win": {
+      "target": [
+        "portable"
+      ],
+      "requestedExecutionLevel": "asInvoker"
+    },
+    "portable": {
+      "artifactName": "GoConsole.exe"
+    },
+    "compression": "store",
+    "asar": true
+  },
+  "devDependencies": {
+    "electron": "^31.3.0",
+    "electron-builder": "^24.13.3"
+  }
+}

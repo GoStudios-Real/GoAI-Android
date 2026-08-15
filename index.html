@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Gaming GoAI - the AI for GoConsoleOS</title>
+<link rel="stylesheet" href="assets/styles.css" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%237c3aed'/%3E%3Cstop offset='1' stop-color='%2306b6d4'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='50' cy='50' r='44' fill='url(%23g)'/%3E%3Ctext x='50' y='66' font-size='52' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3EG%3C/text%3E%3C/svg%3E" />
+</head>
+<body>
+  <div id="stars"></div>
+  <div class="app">
+
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="logo">
+          <div class="orb"></div>
+          <span class="brand-name">Go<span class="ai">AI</span></span>
+        </div>
+        <div class="brand-sub">BY <strong>GOSTUDIOS</strong></div>
+        <div class="server-line"><span class="dot dot-green"></span> AI for GoConsoleOS</div>
+        <div class="status"><span class="dot"></span> ONLINE</div>
+        <button id="allowLoc" class="loc-btn" title="Give GoAI permission to use your location"><span class="qa-ico">&#127757;</span> Allow Location</button>
+        <div id="locChip" class="chip loc-chip"><span class="dot"></span> location: off</div>
+        <div class="city-box">
+          <div class="city-title">&#127963; My Cities</div>
+          <div class="city-row">
+            <input id="cityInput" placeholder="Add a city..." />
+            <button id="addCityBtn" class="mini-btn" title="Add city">+</button>
+          </div>
+          <div id="cityList" class="city-list"></div>
+        </div>
+        <div class="account-box">
+          <div id="accSignedOut">
+            <button id="accBtn" class="loc-btn" title="Sign in to GoStudios Cloud"><span class="qa-ico">&#128100;</span> GoStudios Account</button>
+            <div class="server-line"><span class="dot dot-green"></span> Cloud server online</div>
+          </div>
+          <div id="accSignedIn" class="hidden">
+            <div class="acc-avatar" id="accAvatar">G</div>
+            <div class="acc-meta">
+              <div class="acc-name" id="accName">user</div>
+              <div class="acc-sub" id="accSub">member</div>
+            </div>
+            <button id="accOutBtn" class="mini-btn danger" title="Sign out">Sign out</button>
+          </div>
+        </div>
+      </div>
+
+      <nav class="quick-actions">
+        <button data-cmd="suggest:image" class="qa"><span class="qa-ico">&#128444;</span> Generate Image</button>
+        <button data-cmd="suggest:code" class="qa"><span class="qa-ico">&#128187;</span> Write Code</button>
+        <button data-cmd="suggest:weather" class="qa"><span class="qa-ico">&#9925;</span> Weather</button>
+        <button data-cmd="suggest:timer" class="qa"><span class="qa-ico">&#9201;</span> Timer</button>
+        <button data-cmd="suggest:research" class="qa"><span class="qa-ico">&#128269;</span> Research</button>
+        <button data-cmd="suggest:story" class="qa"><span class="qa-ico">&#128218;</span> Tell a Story</button>
+        <button data-cmd="suggest:time" class="qa"><span class="qa-ico">&#128336;</span> The Time</button>
+        <button data-cmd="suggest:addcity" class="qa"><span class="qa-ico">&#127963;</span> Add City</button>
+        <div class="nav-sep">&#127918; Gaming</div>
+        <button data-cmd="suggest:ttt" class="qa"><span class="qa-ico">&#11093;</span> Tic-Tac-Toe</button>
+        <button data-cmd="suggest:rps" class="qa"><span class="qa-ico">&#129308;</span> Rock Paper Scissors</button>
+        <button data-cmd="suggest:guess" class="qa"><span class="qa-ico">&#127919;</span> Guess the Number</button>
+        <button data-cmd="suggest:trivia" class="qa"><span class="qa-ico">&#10067;</span> Trivia Quiz</button>
+        <button data-cmd="suggest:coin" class="qa"><span class="qa-ico">&#128176;</span> Flip a Coin</button>
+        <button data-cmd="suggest:voice" class="qa"><span class="qa-ico">&#127908;</span> Voice Chat</button>
+        <button data-cmd="suggest:help" class="qa"><span class="qa-ico">&#10067;</span> What can you do?</button>
+      </nav>
+
+      <div class="side-sliders">
+        <label class="switch-row">
+          <span>Sound FX</span>
+          <label class="switch"><input type="checkbox" id="toggleSound" checked /><span class="slider"></span></label>
+        </label>
+        <label class="switch-row">
+          <span>Voice replies</span>
+          <label class="switch"><input type="checkbox" id="toggleVoice" /><span class="slider"></span></label>
+        </label>
+        <label class="switch-row">
+          <span>Super Mind Mode</span>
+          <label class="switch"><input type="checkbox" id="toggleUltra" /><span class="slider"></span></label>
+        </label>
+        <label class="switch-row">
+          <span>Arcade Mode</span>
+          <label class="switch"><input type="checkbox" id="toggleArcade" /><span class="slider"></span></label>
+        </label>
+      </div>
+
+      <div class="side-foot">
+        <div class="board-msg"><span class="c-ico">&#11013;</span> GoConsoleOS<span class="c-sub">sound system</span></div>
+        <button class="sound-btn" data-sound="power">&#9835; Play boot sound</button>
+        <button class="sound-btn" data-sound="confirm">&#9835; Play confirm</button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="tb-title">
+          <span class="tb-logo G"></span>
+          <div>
+            <div class="tb-name">Gaming GoAI</div>
+            <div class="tb-desc">the AI for GoConsoleOS &middot; by GoStudios</div>
+          </div>
+        </div>
+        <div class="tb-right">
+          <select id="modelSelect" class="model-select" title="Choose your GoAI model"></select>
+          <span class="chip" id="chipModel"></span>
+          <span class="chip" id="chipPing"><span class="dot dot-g"></span> brain: 100%</span>
+          <span class="chip tok" id="chipTokens" title="GoAI token balance">&#9889; 999,999,999,999 tokens</span>
+          <button class="icon-btn" id="chatsBtn" title="Your saved chats">&#128172;</button>
+          <button class="icon-btn" id="newChat" title="Start a new chat">&#10133;</button>
+        </div>
+      </header>
+
+      <div class="chat-wrap">
+        <div id="chat" class="chat"></div>
+        <div id="typing" class="typing hidden"><span></span><span></span><span></span></div>
+      </div>
+
+      <footer class="composer">
+        <button id="micBtn" class="icon-btn big" title="Voice chat (tap then speak)">&#127908;</button>
+        <textarea id="input" rows="1" placeholder="Message GoAI..."></textarea>
+        <button id="sendBtn" class="send" title="Send">
+          <svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg>
+        </button>
+      </footer>
+    </main>
+
+    <div id="toast"></div>
+    <div id="preview" class="preview hidden"></div>
+
+    <div id="chatsModal" class="modal hidden">
+      <div class="modal-card">
+        <div class="modal-head">Your Chats <button id="chatsClose" class="mini-btn danger">Close</button></div>
+        <div id="chatList" class="chat-list"></div>
+      </div>
+    </div>
+
+    <div id="accountModal" class="modal hidden">
+      <div class="modal-card">
+        <div class="modal-head">GoStudios Account <button id="accModalClose" class="mini-btn danger">Close</button></div>
+        <div class="modal-tabs">
+          <button id="tabLogin" class="tab active">Sign in</button>
+          <button id="tabSignup" class="tab">Create account</button>
+        </div>
+        <div class="modal-body">
+          <label for="accUser">Username</label>
+          <input id="accUser" placeholder="username" autocomplete="off" />
+          <label for="accPass">Password</label>
+          <input id="accPass" type="password" placeholder="password" />
+          <div id="accErr" class="acc-err hidden"></div>
+          <button id="accSubmit" class="send full">Continue</button>
+          <div class="server-line"><span class="dot dot-green"></span> GoStudios Cloud v1.0 - online (local server)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/sound.js"></script>
+  <script src="assets/data.js"></script>
+  <script src="assets/core.js"></script>
+  <script src="assets/brain.js"></script>
+  <script src="assets/cloud.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>
